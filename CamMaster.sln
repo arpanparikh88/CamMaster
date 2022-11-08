@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CamMaster.Api.Server", "src\CamMaster.Api\CamMaster.Api.Server.csproj", "{DCB9F71B-C9D3-4E11-B54A-1606506DE06E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamMaster.Web", "src\CamMaster.Web\CamMaster.Web.csproj", "{6EB25791-600F-4F47-B305-C49356EDD4E9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CamMaster.Persistence", "src\CamMaster.Persistence\CamMaster.Persistence.csproj", "{D004F992-DB2A-41E4-82B2-3D8B4ED2B2D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CamMaster.Api.Core", "src\CamMaster.Api.Core\CamMaster.Api.Core.csproj", "{C6ED73A0-83C1-4553-BA36-4E9DF72FF534}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CamMaster.Api.Client", "src\CamMaster.Api.Client\CamMaster.Api.Client.csproj", "{6987BB0D-75A9-436F-A908-28E443D29A31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCB9F71B-C9D3-4E11-B54A-1606506DE06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB9F71B-C9D3-4E11-B54A-1606506DE06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB9F71B-C9D3-4E11-B54A-1606506DE06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB9F71B-C9D3-4E11-B54A-1606506DE06E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EB25791-600F-4F47-B305-C49356EDD4E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EB25791-600F-4F47-B305-C49356EDD4E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EB25791-600F-4F47-B305-C49356EDD4E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EB25791-600F-4F47-B305-C49356EDD4E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D004F992-DB2A-41E4-82B2-3D8B4ED2B2D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D004F992-DB2A-41E4-82B2-3D8B4ED2B2D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D004F992-DB2A-41E4-82B2-3D8B4ED2B2D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D004F992-DB2A-41E4-82B2-3D8B4ED2B2D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6ED73A0-83C1-4553-BA36-4E9DF72FF534}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6ED73A0-83C1-4553-BA36-4E9DF72FF534}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6ED73A0-83C1-4553-BA36-4E9DF72FF534}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6ED73A0-83C1-4553-BA36-4E9DF72FF534}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6987BB0D-75A9-436F-A908-28E443D29A31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6987BB0D-75A9-436F-A908-28E443D29A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6987BB0D-75A9-436F-A908-28E443D29A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6987BB0D-75A9-436F-A908-28E443D29A31}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98A0D2B4-D6F5-4F6F-8D6B-342575A3C1C7}
+	EndGlobalSection
+EndGlobal

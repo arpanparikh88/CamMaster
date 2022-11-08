@@ -1,0 +1,2024 @@
+﻿schema {
+  query: Query
+}
+
+enum ApplyPolicy {
+  BEFORE_RESOLVER
+  AFTER_RESOLVER
+}
+
+"This is the graphql main class that queries are generated from. Attributes on other classes will cause them to be dynamically added here during build"
+type Query {
+  assignments("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: StationFilterInput order: [StationSortInput!]): AssignmentsConnection
+  cameras("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: CameraFilterInput order: [CameraSortInput!]): CamerasConnection
+  incidents("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: IncidentFilterInput order: [IncidentSortInput!]): IncidentsConnection
+  nvrs("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: NvrFilterInput order: [NvrSortInput!]): NvrsConnection
+  "Gets all sites, able to filter and sort\n\n\n**Returns:**\nIEnumerable of Sites"
+  sites("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: SiteFilterInput order: [SiteSortInput!]): SitesConnection
+  "Gets a single site with a given site name"
+  siteByName(siteName: String!): Site
+  "Gets a single site with a given site name"
+  siteById(siteId: Int!): Site
+  "Gets all units, able to filter and sort\n\n\n**Returns:**\nIQueryable of units"
+  units("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: UnitFilterInput order: [UnitSortInput!]): UnitsConnection
+  "Gets all sites, able to filter and sort\n\n\n**Returns:**\nIEnumerable of Sites"
+  unitsBySiteName(siteName: String! = "" "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: UnitFilterInput order: [UnitSortInput!]): UnitsBySiteNameConnection
+  me: UserAccount!
+}
+
+input StationFilterInput {
+  and: [StationFilterInput!]
+  or: [StationFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  status: StringOperationFilterInput
+  details: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  stationUnits: ListFilterInputTypeOfStationUnitFilterInput
+}
+
+input StationSortInput {
+  id: SortEnumType
+  name: SortEnumType
+  status: SortEnumType
+  details: SortEnumType
+  createdAt: SortEnumType
+  updatedAt: SortEnumType
+}
+
+"A connection to a list of items."
+type AssignmentsConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [AssignmentsEdge!]
+  "A flattened list of the nodes."
+  nodes: [Station!]
+  totalCount: Int!
+}
+
+input CameraFilterInput {
+  and: [CameraFilterInput!]
+  or: [CameraFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  serialNumber: StringOperationFilterInput
+  version: StringOperationFilterInput
+  model: StringOperationFilterInput
+  channel: ComparableNullableOfInt32OperationFilterInput
+  port: ComparableNullableOfInt32OperationFilterInput
+  username: StringOperationFilterInput
+  password: StringOperationFilterInput
+  unitId: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  memory: ComparableNullableOfDecimalOperationFilterInput
+  status: StringOperationFilterInput
+  microphone: BooleanOperationFilterInput
+  unit: UnitFilterInput
+  incidents: ListFilterInputTypeOfIncidentFilterInput
+  ptzSettings: ListFilterInputTypeOfPtzSettingFilterInput
+}
+
+input CameraSortInput {
+  id: SortEnumType
+  serialNumber: SortEnumType
+  version: SortEnumType
+  model: SortEnumType
+  channel: SortEnumType
+  port: SortEnumType
+  username: SortEnumType
+  password: SortEnumType
+  unitId: SortEnumType
+  createdAt: SortEnumType
+  updatedAt: SortEnumType
+  memory: SortEnumType
+  status: SortEnumType
+  microphone: SortEnumType
+  unit: UnitSortInput
+}
+
+"A connection to a list of items."
+type CamerasConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [CamerasEdge!]
+  "A flattened list of the nodes."
+  nodes: [Camera!]
+  totalCount: Int!
+}
+
+input IncidentFilterInput {
+  and: [IncidentFilterInput!]
+  or: [IncidentFilterInput!]
+  id: ComparableInt64OperationFilterInput
+  message: StringOperationFilterInput
+  cameraId: ComparableInt32OperationFilterInput
+  zoneId: ComparableInt32OperationFilterInput
+  createdByMonitorId: ComparableInt32OperationFilterInput
+  createdAt: ComparableDateTimeOffsetOperationFilterInput
+  assignedToSupervisorId: ComparableNullableOfInt32OperationFilterInput
+  assignedAt: ComparableNullableOfDateTimeOffsetOperationFilterInput
+  completedBySupervisorId: ComparableNullableOfInt32OperationFilterInput
+  completedAt: ComparableNullableOfDateTimeOffsetOperationFilterInput
+  expired: BooleanOperationFilterInput
+  expiredAt: ComparableNullableOfDateTimeOffsetOperationFilterInput
+  assignmentId: ComparableInt32OperationFilterInput
+  hostName: StringOperationFilterInput
+}
+
+input IncidentSortInput {
+  id: SortEnumType
+  message: SortEnumType
+  cameraId: SortEnumType
+  zoneId: SortEnumType
+  createdByMonitorId: SortEnumType
+  createdAt: SortEnumType
+  assignedToSupervisorId: SortEnumType
+  assignedAt: SortEnumType
+  completedBySupervisorId: SortEnumType
+  completedAt: SortEnumType
+  expired: SortEnumType
+  expiredAt: SortEnumType
+  assignmentId: SortEnumType
+  hostName: SortEnumType
+}
+
+"A connection to a list of items."
+type IncidentsConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [IncidentsEdge!]
+  "A flattened list of the nodes."
+  nodes: [Incident!]
+  totalCount: Int!
+}
+
+input NvrFilterInput {
+  and: [NvrFilterInput!]
+  or: [NvrFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  serialNumber: StringOperationFilterInput
+  name: StringOperationFilterInput
+  ip: StringOperationFilterInput
+  port: ComparableNullableOfInt32OperationFilterInput
+  username: StringOperationFilterInput
+  password: StringOperationFilterInput
+  version: StringOperationFilterInput
+  channels: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  simCards: ListFilterInputTypeOfSimCardFilterInput
+}
+
+input NvrSortInput {
+  id: SortEnumType
+  serialNumber: SortEnumType
+  name: SortEnumType
+  ip: SortEnumType
+  port: SortEnumType
+  username: SortEnumType
+  password: SortEnumType
+  version: SortEnumType
+  channels: SortEnumType
+  createdAt: SortEnumType
+  updatedAt: SortEnumType
+}
+
+"A connection to a list of items."
+type NvrsConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [NvrsEdge!]
+  "A flattened list of the nodes."
+  nodes: [Nvr!]
+  totalCount: Int!
+}
+
+input SiteFilterInput {
+  and: [SiteFilterInput!]
+  or: [SiteFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  details: StringOperationFilterInput
+  monitoringSchedule: StringOperationFilterInput
+  username: StringOperationFilterInput
+  status: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  leadId: ComparableNullableOfInt32OperationFilterInput
+  policeDepartmentId: ComparableNullableOfInt32OperationFilterInput
+  lead: LeadFilterInput
+  policeDepartment: PoliceDepartmentFilterInput
+  camviewLoginLogs: ListFilterInputTypeOfCamviewLoginLogFilterInput
+  contactSites: ListFilterInputTypeOfContactSiteFilterInput
+  passwords: ListFilterInputTypeOfPasswordFilterInput
+  units: ListFilterInputTypeOfUnitFilterInput
+}
+
+input SiteSortInput {
+  id: SortEnumType
+  name: SortEnumType
+  details: SortEnumType
+  monitoringSchedule: SortEnumType
+  username: SortEnumType
+  status: SortEnumType
+  createdAt: SortEnumType
+  updatedAt: SortEnumType
+  leadId: SortEnumType
+  policeDepartmentId: SortEnumType
+  lead: LeadSortInput
+  policeDepartment: PoliceDepartmentSortInput
+}
+
+"A connection to a list of items."
+type SitesConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [SitesEdge!]
+  "A flattened list of the nodes."
+  nodes: [Site!]
+  totalCount: Int!
+}
+
+input UnitFilterInput {
+  and: [UnitFilterInput!]
+  or: [UnitFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  serialNumber: StringOperationFilterInput
+  type: StringOperationFilterInput
+  details: StringOperationFilterInput
+  status: StringOperationFilterInput
+  siteId: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  arduinoVersion: StringOperationFilterInput
+  locationDescription: StringOperationFilterInput
+  site: SiteFilterInput
+  airCards: ListFilterInputTypeOfAirCardFilterInput
+  cameras: ListFilterInputTypeOfCameraFilterInput
+  maintenanceUnits: ListFilterInputTypeOfMaintenanceUnitFilterInput
+  presetPtzs: ListFilterInputTypeOfPresetPtzFilterInput
+  routers: ListFilterInputTypeOfRouterFilterInput
+  simCards: ListFilterInputTypeOfSimCardFilterInput
+  solarPanels: ListFilterInputTypeOfSolarPanelFilterInput
+  stationUnits: ListFilterInputTypeOfStationUnitFilterInput
+  unitFiles: ListFilterInputTypeOfUnitFileFilterInput
+  unitLocations: ListFilterInputTypeOfUnitLocationFilterInput
+  voltageLogs: ListFilterInputTypeOfVoltageLogFilterInput
+}
+
+input UnitSortInput {
+  id: SortEnumType
+  serialNumber: SortEnumType
+  type: SortEnumType
+  details: SortEnumType
+  status: SortEnumType
+  siteId: SortEnumType
+  createdAt: SortEnumType
+  updatedAt: SortEnumType
+  arduinoVersion: SortEnumType
+  locationDescription: SortEnumType
+  site: SiteSortInput
+}
+
+"A connection to a list of items."
+type UnitsConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [UnitsEdge!]
+  "A flattened list of the nodes."
+  nodes: [Unit!]
+  totalCount: Int!
+}
+
+"A connection to a list of items."
+type UnitsBySiteNameConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [UnitsBySiteNameEdge!]
+  "A flattened list of the nodes."
+  nodes: [Unit!]
+  totalCount: Int!
+}
+
+input ComparableInt32OperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int!]
+  nin: [Int!]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+input ComparableNullableOfDateTimeOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime]
+  nin: [DateTime]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+input ListFilterInputTypeOfStationUnitFilterInput {
+  all: StationUnitFilterInput
+  none: StationUnitFilterInput
+  some: StationUnitFilterInput
+  any: Boolean
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+"Information about pagination in a connection."
+type PageInfo {
+  "Indicates whether more edges exist following the set defined by the clients arguments."
+  hasNextPage: Boolean!
+  "Indicates whether more edges exist prior the set defined by the clients arguments."
+  hasPreviousPage: Boolean!
+  "When paginating backwards, the cursor to continue."
+  startCursor: String
+  "When paginating forwards, the cursor to continue."
+  endCursor: String
+}
+
+type Station {
+  id: Int!
+  name: String
+  status: String
+  details: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  stationUnits: [StationUnit]
+}
+
+"An edge in a connection."
+type AssignmentsEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Station!
+}
+
+input ComparableNullableOfInt32OperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int]
+  nin: [Int]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input ComparableNullableOfDecimalOperationFilterInput {
+  eq: Decimal
+  neq: Decimal
+  in: [Decimal]
+  nin: [Decimal]
+  gt: Decimal
+  ngt: Decimal
+  gte: Decimal
+  ngte: Decimal
+  lt: Decimal
+  nlt: Decimal
+  lte: Decimal
+  nlte: Decimal
+}
+
+input BooleanOperationFilterInput {
+  eq: Boolean
+  neq: Boolean
+}
+
+input ListFilterInputTypeOfIncidentFilterInput {
+  all: IncidentFilterInput
+  none: IncidentFilterInput
+  some: IncidentFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfPtzSettingFilterInput {
+  all: PtzSettingFilterInput
+  none: PtzSettingFilterInput
+  some: PtzSettingFilterInput
+  any: Boolean
+}
+
+type Camera {
+  id: Int!
+  serialNumber: String
+  version: String
+  model: String
+  channel: Int
+  port: Int
+  username: String
+  password: String
+  unitId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  memory: Decimal
+  status: String
+  microphone: Boolean
+  unit: Unit
+  incidents: [Incident]
+  ptzSettings: [PtzSetting]
+}
+
+"An edge in a connection."
+type CamerasEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Camera!
+}
+
+input ComparableInt64OperationFilterInput {
+  eq: Long
+  neq: Long
+  in: [Long!]
+  nin: [Long!]
+  gt: Long
+  ngt: Long
+  gte: Long
+  ngte: Long
+  lt: Long
+  nlt: Long
+  lte: Long
+  nlte: Long
+}
+
+input ComparableDateTimeOffsetOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime!]
+  nin: [DateTime!]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+input ComparableNullableOfDateTimeOffsetOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime]
+  nin: [DateTime]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+type Incident {
+  id: Long!
+  message: String
+  cameraId: Int!
+  zoneId: Int!
+  createdByMonitorId: Int!
+  createdAt: DateTime!
+  assignedToSupervisorId: Int
+  assignedAt: DateTime
+  completedBySupervisorId: Int
+  completedAt: DateTime
+  expired: Boolean
+  expiredAt: DateTime
+  assignmentId: Int!
+  hostName: String
+}
+
+"An edge in a connection."
+type IncidentsEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Incident!
+}
+
+input ListFilterInputTypeOfSimCardFilterInput {
+  all: SimCardFilterInput
+  none: SimCardFilterInput
+  some: SimCardFilterInput
+  any: Boolean
+}
+
+type Nvr {
+  id: Int!
+  serialNumber: String
+  name: String
+  ip: String
+  port: Int
+  username: String
+  password: String
+  version: String
+  channels: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  simCards: [SimCard]
+}
+
+"An edge in a connection."
+type NvrsEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Nvr!
+}
+
+input LeadFilterInput {
+  and: [LeadFilterInput!]
+  or: [LeadFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  companyId: ComparableNullableOfInt32OperationFilterInput
+  project: StringOperationFilterInput
+  industryId: ComparableInt32OperationFilterInput
+  referralId: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  userId: ComparableNullableOfInt32OperationFilterInput
+  notes: StringOperationFilterInput
+  company: CompanyFilterInput
+  industry: IndustryFilterInput
+  referral: ReferralFilterInput
+  user: UserFilterInput
+  clients: ListFilterInputTypeOfClientFilterInput
+  faceToFaces: ListFilterInputTypeOfFaceToFaceFilterInput
+  liveDemonstrations: ListFilterInputTypeOfLiveDemonstrationFilterInput
+  proposals: ListFilterInputTypeOfProposalFilterInput
+  prospects: ListFilterInputTypeOfProspectFilterInput
+  sites: ListFilterInputTypeOfSiteFilterInput
+}
+
+input PoliceDepartmentFilterInput {
+  and: [PoliceDepartmentFilterInput!]
+  or: [PoliceDepartmentFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  number: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  sites: ListFilterInputTypeOfSiteFilterInput
+}
+
+input ListFilterInputTypeOfCamviewLoginLogFilterInput {
+  all: CamviewLoginLogFilterInput
+  none: CamviewLoginLogFilterInput
+  some: CamviewLoginLogFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfContactSiteFilterInput {
+  all: ContactSiteFilterInput
+  none: ContactSiteFilterInput
+  some: ContactSiteFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfPasswordFilterInput {
+  all: PasswordFilterInput
+  none: PasswordFilterInput
+  some: PasswordFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfUnitFilterInput {
+  all: UnitFilterInput
+  none: UnitFilterInput
+  some: UnitFilterInput
+  any: Boolean
+}
+
+input LeadSortInput {
+  id: SortEnumType
+  companyId: SortEnumType
+  project: SortEnumType
+  industryId: SortEnumType
+  referralId: SortEnumType
+  createdAt: SortEnumType
+  updatedAt: SortEnumType
+  userId: SortEnumType
+  notes: SortEnumType
+  company: CompanySortInput
+  industry: IndustrySortInput
+  referral: ReferralSortInput
+  user: UserSortInput
+}
+
+input PoliceDepartmentSortInput {
+  id: SortEnumType
+  name: SortEnumType
+  number: SortEnumType
+  createdAt: SortEnumType
+  updatedAt: SortEnumType
+}
+
+type Site {
+  id: Int!
+  name: String
+  details: String
+  monitoringSchedule: String
+  username: String
+  status: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  leadId: Int
+  policeDepartmentId: Int
+  lead: Lead
+  policeDepartment: PoliceDepartment
+  camviewLoginLogs: [CamviewLoginLog]
+  contactSites: [ContactSite]
+  passwords: [Password]
+  units: [Unit]
+}
+
+"An edge in a connection."
+type SitesEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Site!
+}
+
+input ListFilterInputTypeOfAirCardFilterInput {
+  all: AirCardFilterInput
+  none: AirCardFilterInput
+  some: AirCardFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfCameraFilterInput {
+  all: CameraFilterInput
+  none: CameraFilterInput
+  some: CameraFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfMaintenanceUnitFilterInput {
+  all: MaintenanceUnitFilterInput
+  none: MaintenanceUnitFilterInput
+  some: MaintenanceUnitFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfPresetPtzFilterInput {
+  all: PresetPtzFilterInput
+  none: PresetPtzFilterInput
+  some: PresetPtzFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfRouterFilterInput {
+  all: RouterFilterInput
+  none: RouterFilterInput
+  some: RouterFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfSolarPanelFilterInput {
+  all: SolarPanelFilterInput
+  none: SolarPanelFilterInput
+  some: SolarPanelFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfUnitFileFilterInput {
+  all: UnitFileFilterInput
+  none: UnitFileFilterInput
+  some: UnitFileFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfUnitLocationFilterInput {
+  all: UnitLocationFilterInput
+  none: UnitLocationFilterInput
+  some: UnitLocationFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfVoltageLogFilterInput {
+  all: VoltageLogFilterInput
+  none: VoltageLogFilterInput
+  some: VoltageLogFilterInput
+  any: Boolean
+}
+
+type Unit {
+  id: Int!
+  serialNumber: String
+  type: String
+  details: String
+  status: String
+  siteId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  arduinoVersion: String
+  locationDescription: String
+  site: Site
+  airCards: [AirCard]
+  cameras: [Camera]
+  maintenanceUnits: [MaintenanceUnit]
+  presetPtzs: [PresetPtz]
+  routers: [Router]
+  simCards: [SimCard]
+  solarPanels: [SolarPanel]
+  stationUnits: [StationUnit]
+  unitFiles: [UnitFile]
+  unitLocations: [UnitLocation]
+  voltageLogs: [VoltageLog]
+}
+
+"An edge in a connection."
+type UnitsEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Unit!
+}
+
+"An edge in a connection."
+type UnitsBySiteNameEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Unit!
+}
+
+input StationUnitFilterInput {
+  and: [StationUnitFilterInput!]
+  or: [StationUnitFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  unitId: ComparableNullableOfInt32OperationFilterInput
+  stationId: ComparableNullableOfInt32OperationFilterInput
+  station: StationFilterInput
+  unit: UnitFilterInput
+}
+
+input PtzSettingFilterInput {
+  and: [PtzSettingFilterInput!]
+  or: [PtzSettingFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  cameraId: ComparableNullableOfInt32OperationFilterInput
+  param1: ComparableNullableOfInt32OperationFilterInput
+  param2: ComparableNullableOfInt32OperationFilterInput
+  param3: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  status: BooleanOperationFilterInput
+  camera: CameraFilterInput
+}
+
+input SimCardFilterInput {
+  and: [SimCardFilterInput!]
+  or: [SimCardFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  serialNumber: StringOperationFilterInput
+  ip: StringOperationFilterInput
+  provider: StringOperationFilterInput
+  apn: StringOperationFilterInput
+  phone: StringOperationFilterInput
+  nvrId: ComparableNullableOfInt32OperationFilterInput
+  unitId: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  nvr: NvrFilterInput
+  unit: UnitFilterInput
+}
+
+input CompanyFilterInput {
+  and: [CompanyFilterInput!]
+  or: [CompanyFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  leads: ListFilterInputTypeOfLeadFilterInput
+}
+
+input IndustryFilterInput {
+  and: [IndustryFilterInput!]
+  or: [IndustryFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  decisionMakerRoles: ListFilterInputTypeOfDecisionMakerRoleFilterInput
+  leads: ListFilterInputTypeOfLeadFilterInput
+}
+
+input ReferralFilterInput {
+  and: [ReferralFilterInput!]
+  or: [ReferralFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  leads: ListFilterInputTypeOfLeadFilterInput
+}
+
+input UserFilterInput {
+  and: [UserFilterInput!]
+  or: [UserFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  username: StringOperationFilterInput
+  password: StringOperationFilterInput
+  rememberToken: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  lastName: StringOperationFilterInput
+  active: BooleanOperationFilterInput
+  contactNotes: ListFilterInputTypeOfContactNoteFilterInput
+  faceToFaces: ListFilterInputTypeOfFaceToFaceFilterInput
+  leads: ListFilterInputTypeOfLeadFilterInput
+  liveDemonstrations: ListFilterInputTypeOfLiveDemonstrationFilterInput
+  proposals: ListFilterInputTypeOfProposalFilterInput
+  prospects: ListFilterInputTypeOfProspectFilterInput
+  roleUsers: ListFilterInputTypeOfRoleUserFilterInput
+  updates: ListFilterInputTypeOfUpdateFilterInput
+}
+
+input ListFilterInputTypeOfClientFilterInput {
+  all: ClientFilterInput
+  none: ClientFilterInput
+  some: ClientFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfFaceToFaceFilterInput {
+  all: FaceToFaceFilterInput
+  none: FaceToFaceFilterInput
+  some: FaceToFaceFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfLiveDemonstrationFilterInput {
+  all: LiveDemonstrationFilterInput
+  none: LiveDemonstrationFilterInput
+  some: LiveDemonstrationFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfProposalFilterInput {
+  all: ProposalFilterInput
+  none: ProposalFilterInput
+  some: ProposalFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfProspectFilterInput {
+  all: ProspectFilterInput
+  none: ProspectFilterInput
+  some: ProspectFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfSiteFilterInput {
+  all: SiteFilterInput
+  none: SiteFilterInput
+  some: SiteFilterInput
+  any: Boolean
+}
+
+input CamviewLoginLogFilterInput {
+  and: [CamviewLoginLogFilterInput!]
+  or: [CamviewLoginLogFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  siteId: ComparableNullableOfInt32OperationFilterInput
+  status: StringOperationFilterInput
+  loginType: StringOperationFilterInput
+  loginDate: ComparableNullableOfDateTimeOperationFilterInput
+  name: StringOperationFilterInput
+  site: SiteFilterInput
+}
+
+input ContactSiteFilterInput {
+  and: [ContactSiteFilterInput!]
+  or: [ContactSiteFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  contactId: ComparableInt32OperationFilterInput
+  siteId: ComparableInt32OperationFilterInput
+  callingOrder: StringOperationFilterInput
+  contact: ContactFilterInput
+  site: SiteFilterInput
+}
+
+input PasswordFilterInput {
+  and: [PasswordFilterInput!]
+  or: [PasswordFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  type: StringOperationFilterInput
+  password1: StringOperationFilterInput
+  siteId: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  site: SiteFilterInput
+}
+
+input CompanySortInput {
+  id: SortEnumType
+  name: SortEnumType
+  createdAt: SortEnumType
+  updatedAt: SortEnumType
+}
+
+input IndustrySortInput {
+  id: SortEnumType
+  name: SortEnumType
+  createdAt: SortEnumType
+  updatedAt: SortEnumType
+}
+
+input ReferralSortInput {
+  id: SortEnumType
+  name: SortEnumType
+  updatedAt: SortEnumType
+  createdAt: SortEnumType
+}
+
+input UserSortInput {
+  id: SortEnumType
+  name: SortEnumType
+  username: SortEnumType
+  password: SortEnumType
+  rememberToken: SortEnumType
+  createdAt: SortEnumType
+  updatedAt: SortEnumType
+  lastName: SortEnumType
+  active: SortEnumType
+}
+
+input AirCardFilterInput {
+  and: [AirCardFilterInput!]
+  or: [AirCardFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  imei: StringOperationFilterInput
+  model: StringOperationFilterInput
+  brand: StringOperationFilterInput
+  status: StringOperationFilterInput
+  unitId: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  unit: UnitFilterInput
+}
+
+input MaintenanceUnitFilterInput {
+  and: [MaintenanceUnitFilterInput!]
+  or: [MaintenanceUnitFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  speakerStatus: BooleanOperationFilterInput
+  strobeStatus: BooleanOperationFilterInput
+  arduinoStatus: BooleanOperationFilterInput
+  routerStatus: BooleanOperationFilterInput
+  stickerStatus: BooleanOperationFilterInput
+  micriphoneStatus: BooleanOperationFilterInput
+  camerasStatus: BooleanOperationFilterInput
+  aircardStatus: BooleanOperationFilterInput
+  detailsUnit: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  unitId: ComparableInt32OperationFilterInput
+  unit: UnitFilterInput
+}
+
+input PresetPtzFilterInput {
+  and: [PresetPtzFilterInput!]
+  or: [PresetPtzFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  unitId: ComparableNullableOfInt32OperationFilterInput
+  horizontal: ComparableNullableOfInt32OperationFilterInput
+  vertical: ComparableNullableOfInt32OperationFilterInput
+  zoom: ComparableNullableOfInt32OperationFilterInput
+  unit: UnitFilterInput
+}
+
+input RouterFilterInput {
+  and: [RouterFilterInput!]
+  or: [RouterFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  serialNumber: StringOperationFilterInput
+  version: StringOperationFilterInput
+  factoryPassword: StringOperationFilterInput
+  password: StringOperationFilterInput
+  model: StringOperationFilterInput
+  status: StringOperationFilterInput
+  signal: ComparableNullableOfInt32OperationFilterInput
+  unitId: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  unit: UnitFilterInput
+}
+
+input SolarPanelFilterInput {
+  and: [SolarPanelFilterInput!]
+  or: [SolarPanelFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  serialNumber: StringOperationFilterInput
+  company: StringOperationFilterInput
+  capacity: ComparableNullableOfDecimalOperationFilterInput
+  status: StringOperationFilterInput
+  notes: StringOperationFilterInput
+  unitId: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  countryOrigin: StringOperationFilterInput
+  battery1Date: ComparableNullableOfDateTimeOperationFilterInput
+  battery1Serial: StringOperationFilterInput
+  battery2Date: ComparableNullableOfDateTimeOperationFilterInput
+  battery2Serial: StringOperationFilterInput
+  sunsaverModel: StringOperationFilterInput
+  sunsaverSerial: StringOperationFilterInput
+  unit: UnitFilterInput
+  maintenanceSolarPanels: ListFilterInputTypeOfMaintenanceSolarPanelFilterInput
+  solarPanelFiles: ListFilterInputTypeOfSolarPanelFileFilterInput
+}
+
+input UnitFileFilterInput {
+  and: [UnitFileFilterInput!]
+  or: [UnitFileFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  unitId: ComparableNullableOfInt32OperationFilterInput
+  name: StringOperationFilterInput
+  size: ComparableNullableOfDecimalOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  unit: UnitFilterInput
+}
+
+input UnitLocationFilterInput {
+  and: [UnitLocationFilterInput!]
+  or: [UnitLocationFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  latitude: ComparableNullableOfDecimalOperationFilterInput
+  longitude: ComparableNullableOfDecimalOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  unitId: ComparableNullableOfInt32OperationFilterInput
+  unit: UnitFilterInput
+}
+
+input VoltageLogFilterInput {
+  and: [VoltageLogFilterInput!]
+  or: [VoltageLogFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  unitId: ComparableNullableOfInt32OperationFilterInput
+  status: BooleanOperationFilterInput
+  unit: UnitFilterInput
+}
+
+input ListFilterInputTypeOfLeadFilterInput {
+  all: LeadFilterInput
+  none: LeadFilterInput
+  some: LeadFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfDecisionMakerRoleFilterInput {
+  all: DecisionMakerRoleFilterInput
+  none: DecisionMakerRoleFilterInput
+  some: DecisionMakerRoleFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfContactNoteFilterInput {
+  all: ContactNoteFilterInput
+  none: ContactNoteFilterInput
+  some: ContactNoteFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfRoleUserFilterInput {
+  all: RoleUserFilterInput
+  none: RoleUserFilterInput
+  some: RoleUserFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfUpdateFilterInput {
+  all: UpdateFilterInput
+  none: UpdateFilterInput
+  some: UpdateFilterInput
+  any: Boolean
+}
+
+input ClientFilterInput {
+  and: [ClientFilterInput!]
+  or: [ClientFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  startDate: ComparableNullableOfDateTimeOperationFilterInput
+  terminationDate: ComparableNullableOfDateTimeOperationFilterInput
+  leadId: ComparableNullableOfInt32OperationFilterInput
+  billingAddress: StringOperationFilterInput
+  billingCity: StringOperationFilterInput
+  billingState: StringOperationFilterInput
+  billingZipCode: StringOperationFilterInput
+  billingCountry: StringOperationFilterInput
+  userId: ComparableNullableOfInt32OperationFilterInput
+  approved: BooleanOperationFilterInput
+  contactId: ComparableNullableOfInt32OperationFilterInput
+  notes: StringOperationFilterInput
+  lead: LeadFilterInput
+}
+
+input FaceToFaceFilterInput {
+  and: [FaceToFaceFilterInput!]
+  or: [FaceToFaceFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  date: ComparableNullableOfDateTimeOperationFilterInput
+  place: StringOperationFilterInput
+  notes: StringOperationFilterInput
+  time: ComparableNullableOfTimeSpanOperationFilterInput
+  leadId: ComparableInt32OperationFilterInput
+  userId: ComparableNullableOfInt32OperationFilterInput
+  lead: LeadFilterInput
+  user: UserFilterInput
+}
+
+input LiveDemonstrationFilterInput {
+  and: [LiveDemonstrationFilterInput!]
+  or: [LiveDemonstrationFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  date: ComparableNullableOfDateTimeOperationFilterInput
+  place: StringOperationFilterInput
+  notes: StringOperationFilterInput
+  time: ComparableNullableOfTimeSpanOperationFilterInput
+  leadId: ComparableInt32OperationFilterInput
+  userId: ComparableNullableOfInt32OperationFilterInput
+  lead: LeadFilterInput
+  user: UserFilterInput
+}
+
+input ProposalFilterInput {
+  and: [ProposalFilterInput!]
+  or: [ProposalFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  leadId: ComparableNullableOfInt32OperationFilterInput
+  monitoringCategory: StringOperationFilterInput
+  notes: StringOperationFilterInput
+  setupFee: ComparableNullableOfDecimalOperationFilterInput
+  purchaseTotal: ComparableNullableOfDecimalOperationFilterInput
+  lease: ComparableNullableOfDecimalOperationFilterInput
+  monitoring: ComparableNullableOfDecimalOperationFilterInput
+  monthlySubtotal: ComparableNullableOfDecimalOperationFilterInput
+  monthlyDiscount: ComparableNullableOfDecimalOperationFilterInput
+  monthlyTotal: ComparableNullableOfDecimalOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  userId: ComparableNullableOfInt32OperationFilterInput
+  specialDiscount: ComparableNullableOfDecimalOperationFilterInput
+  lead: LeadFilterInput
+  user: UserFilterInput
+  proposalUnits: ListFilterInputTypeOfProposalUnitFilterInput
+}
+
+input ProspectFilterInput {
+  and: [ProspectFilterInput!]
+  or: [ProspectFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  siteLatitude: ComparableNullableOfDecimalOperationFilterInput
+  siteLongitude: ComparableNullableOfDecimalOperationFilterInput
+  siteAddress: StringOperationFilterInput
+  siteCity: StringOperationFilterInput
+  siteState: StringOperationFilterInput
+  siteZipCode: StringOperationFilterInput
+  dmAddress: StringOperationFilterInput
+  dmCity: StringOperationFilterInput
+  dmState: StringOperationFilterInput
+  dmZipCode: StringOperationFilterInput
+  siteCountry: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  leadId: ComparableInt32OperationFilterInput
+  userId: ComparableNullableOfInt32OperationFilterInput
+  dmCountry: StringOperationFilterInput
+  notes: StringOperationFilterInput
+  lead: LeadFilterInput
+  user: UserFilterInput
+  contactProspects: ListFilterInputTypeOfContactProspectFilterInput
+}
+
+input ContactFilterInput {
+  and: [ContactFilterInput!]
+  or: [ContactFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  position: StringOperationFilterInput
+  email: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  lastName: StringOperationFilterInput
+  nickname: StringOperationFilterInput
+  type: StringOperationFilterInput
+  contactNotes: ListFilterInputTypeOfContactNoteFilterInput
+  contactProspects: ListFilterInputTypeOfContactProspectFilterInput
+  contactSites: ListFilterInputTypeOfContactSiteFilterInput
+  telephones: ListFilterInputTypeOfTelephoneFilterInput
+}
+
+input ListFilterInputTypeOfMaintenanceSolarPanelFilterInput {
+  all: MaintenanceSolarPanelFilterInput
+  none: MaintenanceSolarPanelFilterInput
+  some: MaintenanceSolarPanelFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfSolarPanelFileFilterInput {
+  all: SolarPanelFileFilterInput
+  none: SolarPanelFileFilterInput
+  some: SolarPanelFileFilterInput
+  any: Boolean
+}
+
+input DecisionMakerRoleFilterInput {
+  and: [DecisionMakerRoleFilterInput!]
+  or: [DecisionMakerRoleFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  industryId: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  industry: IndustryFilterInput
+}
+
+input ContactNoteFilterInput {
+  and: [ContactNoteFilterInput!]
+  or: [ContactNoteFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  userId: ComparableInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  notes: StringOperationFilterInput
+  contactId: ComparableInt32OperationFilterInput
+  contact: ContactFilterInput
+  user: UserFilterInput
+}
+
+input RoleUserFilterInput {
+  and: [RoleUserFilterInput!]
+  or: [RoleUserFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  roleId: ComparableInt32OperationFilterInput
+  userId: ComparableInt32OperationFilterInput
+  role: RoleFilterInput
+  user: UserFilterInput
+}
+
+input UpdateFilterInput {
+  and: [UpdateFilterInput!]
+  or: [UpdateFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  objectId: ComparableNullableOfInt32OperationFilterInput
+  tableName: StringOperationFilterInput
+  fieldName: StringOperationFilterInput
+  oldField: StringOperationFilterInput
+  newField: StringOperationFilterInput
+  userId: ComparableInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  user: UserFilterInput
+}
+
+input ComparableNullableOfTimeSpanOperationFilterInput {
+  eq: TimeSpan
+  neq: TimeSpan
+  in: [TimeSpan]
+  nin: [TimeSpan]
+  gt: TimeSpan
+  ngt: TimeSpan
+  gte: TimeSpan
+  ngte: TimeSpan
+  lt: TimeSpan
+  nlt: TimeSpan
+  lte: TimeSpan
+  nlte: TimeSpan
+}
+
+input ListFilterInputTypeOfProposalUnitFilterInput {
+  all: ProposalUnitFilterInput
+  none: ProposalUnitFilterInput
+  some: ProposalUnitFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfContactProspectFilterInput {
+  all: ContactProspectFilterInput
+  none: ContactProspectFilterInput
+  some: ContactProspectFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfTelephoneFilterInput {
+  all: TelephoneFilterInput
+  none: TelephoneFilterInput
+  some: TelephoneFilterInput
+  any: Boolean
+}
+
+input MaintenanceSolarPanelFilterInput {
+  and: [MaintenanceSolarPanelFilterInput!]
+  or: [MaintenanceSolarPanelFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  panelStatus: BooleanOperationFilterInput
+  sunsaverStatus: BooleanOperationFilterInput
+  batteryStatus: BooleanOperationFilterInput
+  datailsSolarPanel: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  solarPanelId: ComparableNullableOfInt32OperationFilterInput
+  solarPanel: SolarPanelFilterInput
+}
+
+input SolarPanelFileFilterInput {
+  and: [SolarPanelFileFilterInput!]
+  or: [SolarPanelFileFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  solarPanelId: ComparableNullableOfInt32OperationFilterInput
+  name: StringOperationFilterInput
+  size: ComparableNullableOfDecimalOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  solarPanel: SolarPanelFilterInput
+}
+
+input RoleFilterInput {
+  and: [RoleFilterInput!]
+  or: [RoleFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  description: StringOperationFilterInput
+  roleUsers: ListFilterInputTypeOfRoleUserFilterInput
+}
+
+input ProposalUnitFilterInput {
+  and: [ProposalUnitFilterInput!]
+  or: [ProposalUnitFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  latitude: ComparableNullableOfDecimalOperationFilterInput
+  longitude: ComparableNullableOfDecimalOperationFilterInput
+  solarPanel: StringOperationFilterInput
+  lease: StringOperationFilterInput
+  type: StringOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  proposalId: ComparableInt32OperationFilterInput
+  proposal: ProposalFilterInput
+  c1Files: ListFilterInputTypeOfC1FileFilterInput
+  c2Files: ListFilterInputTypeOfC2FileFilterInput
+  c3Files: ListFilterInputTypeOfC3FileFilterInput
+}
+
+input ContactProspectFilterInput {
+  and: [ContactProspectFilterInput!]
+  or: [ContactProspectFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  contactId: ComparableNullableOfInt32OperationFilterInput
+  prospectId: ComparableNullableOfInt32OperationFilterInput
+  faceToFace: BooleanOperationFilterInput
+  liveDemonstration: BooleanOperationFilterInput
+  site: BooleanOperationFilterInput
+  typee: StringOperationFilterInput
+  contact: ContactFilterInput
+  prospect: ProspectFilterInput
+}
+
+input TelephoneFilterInput {
+  and: [TelephoneFilterInput!]
+  or: [TelephoneFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  type: StringOperationFilterInput
+  number: StringOperationFilterInput
+  contactId: ComparableNullableOfInt32OperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  countryCode: StringOperationFilterInput
+  extension: StringOperationFilterInput
+  contact: ContactFilterInput
+}
+
+input ListFilterInputTypeOfC1FileFilterInput {
+  all: C1FileFilterInput
+  none: C1FileFilterInput
+  some: C1FileFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfC2FileFilterInput {
+  all: C2FileFilterInput
+  none: C2FileFilterInput
+  some: C2FileFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfC3FileFilterInput {
+  all: C3FileFilterInput
+  none: C3FileFilterInput
+  some: C3FileFilterInput
+  any: Boolean
+}
+
+input C1FileFilterInput {
+  and: [C1FileFilterInput!]
+  or: [C1FileFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  proposalUnitId: ComparableNullableOfInt32OperationFilterInput
+  name: StringOperationFilterInput
+  size: ComparableNullableOfDecimalOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  proposalUnit: ProposalUnitFilterInput
+}
+
+input C2FileFilterInput {
+  and: [C2FileFilterInput!]
+  or: [C2FileFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  proposalUnitId: ComparableNullableOfInt32OperationFilterInput
+  name: StringOperationFilterInput
+  size: ComparableNullableOfDecimalOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  proposalUnit: ProposalUnitFilterInput
+}
+
+input C3FileFilterInput {
+  and: [C3FileFilterInput!]
+  or: [C3FileFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  proposalUnitId: ComparableNullableOfInt32OperationFilterInput
+  name: StringOperationFilterInput
+  size: ComparableNullableOfDecimalOperationFilterInput
+  createdAt: ComparableNullableOfDateTimeOperationFilterInput
+  updatedAt: ComparableNullableOfDateTimeOperationFilterInput
+  proposalUnit: ProposalUnitFilterInput
+}
+
+"The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1."
+scalar Long
+
+type PtzSetting {
+  id: Int!
+  cameraId: Int
+  param1: Int
+  param2: Int
+  param3: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  status: Boolean
+  camera: Camera
+}
+
+"The built-in `Decimal` scalar type."
+scalar Decimal
+
+type StationUnit {
+  id: Int!
+  unitId: Int
+  stationId: Int
+  station: Station
+  unit: Unit
+}
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime
+
+type UserAccount {
+  id: Int!
+  username: String!
+  lastName: String!
+  firstName: String!
+  roles: [String!]!
+  token: String!
+}
+
+type SimCard {
+  id: Int!
+  serialNumber: String
+  ip: String
+  provider: String
+  apn: String
+  phone: String
+  nvrId: Int
+  unitId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  nvr: Nvr
+  unit: Unit
+}
+
+type Lead {
+  id: Int!
+  companyId: Int
+  project: String
+  industryId: Int!
+  referralId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  userId: Int
+  notes: String
+  company: Company
+  industry: Industry
+  referral: Referral
+  user: User
+  clients: [Client]
+  faceToFaces: [FaceToFace]
+  liveDemonstrations: [LiveDemonstration]
+  proposals: [Proposal]
+  prospects: [Prospect]
+  sites: [Site]
+}
+
+type PoliceDepartment {
+  id: Int!
+  name: String
+  number: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  sites: [Site]
+}
+
+type CamviewLoginLog {
+  id: Int!
+  siteId: Int
+  status: String
+  loginType: String
+  loginDate: DateTime
+  name: String
+  site: Site
+}
+
+type ContactSite {
+  id: Int!
+  contactId: Int!
+  siteId: Int!
+  callingOrder: String
+  contact: Contact
+  site: Site
+}
+
+type Password {
+  id: Int!
+  type: String
+  password1: String
+  siteId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  site: Site
+}
+
+type AirCard {
+  id: Int!
+  imei: String
+  model: String
+  brand: String
+  status: String
+  unitId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  unit: Unit
+}
+
+type MaintenanceUnit {
+  id: Int!
+  speakerStatus: Boolean
+  strobeStatus: Boolean
+  arduinoStatus: Boolean
+  routerStatus: Boolean
+  stickerStatus: Boolean
+  micriphoneStatus: Boolean
+  camerasStatus: Boolean
+  aircardStatus: Boolean
+  detailsUnit: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  unitId: Int!
+  unit: Unit
+}
+
+type PresetPtz {
+  id: Int!
+  unitId: Int
+  horizontal: Int
+  vertical: Int
+  zoom: Int
+  unit: Unit
+}
+
+type Router {
+  id: Int!
+  serialNumber: String
+  version: String
+  factoryPassword: String
+  password: String
+  model: String
+  status: String
+  signal: Int
+  unitId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  unit: Unit
+}
+
+type SolarPanel {
+  id: Int!
+  serialNumber: String
+  company: String
+  capacity: Decimal
+  status: String
+  notes: String
+  unitId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  countryOrigin: String
+  battery1Date: DateTime
+  battery1Serial: String
+  battery2Date: DateTime
+  battery2Serial: String
+  sunsaverModel: String
+  sunsaverSerial: String
+  unit: Unit
+  maintenanceSolarPanels: [MaintenanceSolarPanel]
+  solarPanelFiles: [SolarPanelFile]
+}
+
+type UnitFile {
+  id: Int!
+  unitId: Int
+  name: String
+  size: Decimal
+  createdAt: DateTime
+  updatedAt: DateTime
+  unit: Unit
+}
+
+type UnitLocation {
+  id: Int!
+  latitude: Decimal
+  longitude: Decimal
+  createdAt: DateTime
+  updatedAt: DateTime
+  unitId: Int
+  unit: Unit
+}
+
+type VoltageLog {
+  id: Int!
+  createdAt: DateTime
+  unitId: Int
+  status: Boolean
+  unit: Unit
+}
+
+"The `TimeSpan` scalar represents an ISO-8601 compliant duration type."
+scalar TimeSpan
+
+type SolarPanelFile {
+  id: Int!
+  solarPanelId: Int
+  name: String
+  size: Decimal
+  createdAt: DateTime
+  updatedAt: DateTime
+  solarPanel: SolarPanel
+}
+
+type MaintenanceSolarPanel {
+  id: Int!
+  panelStatus: Boolean
+  sunsaverStatus: Boolean
+  batteryStatus: Boolean
+  datailsSolarPanel: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  solarPanelId: Int
+  solarPanel: SolarPanel
+}
+
+type Contact {
+  id: Int!
+  name: String
+  position: String
+  email: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  lastName: String
+  nickname: String
+  type: String
+  contactNotes: [ContactNote]
+  contactProspects: [ContactProspect]
+  contactSites: [ContactSite]
+  telephones: [Telephone]
+}
+
+type Prospect {
+  id: Int!
+  siteLatitude: Decimal
+  siteLongitude: Decimal
+  siteAddress: String
+  siteCity: String
+  siteState: String
+  siteZipCode: String
+  dmAddress: String
+  dmCity: String
+  dmState: String
+  dmZipCode: String
+  siteCountry: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  leadId: Int!
+  userId: Int
+  dmCountry: String
+  notes: String
+  lead: Lead
+  user: User
+  contactProspects: [ContactProspect]
+}
+
+type Proposal {
+  id: Int!
+  leadId: Int
+  monitoringCategory: String
+  notes: String
+  setupFee: Decimal
+  purchaseTotal: Decimal
+  lease: Decimal
+  monitoring: Decimal
+  monthlySubtotal: Decimal
+  monthlyDiscount: Decimal
+  monthlyTotal: Decimal
+  createdAt: DateTime
+  updatedAt: DateTime
+  userId: Int
+  specialDiscount: Decimal
+  lead: Lead
+  user: User
+  proposalUnits: [ProposalUnit]
+}
+
+type LiveDemonstration {
+  id: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+  date: DateTime
+  place: String
+  notes: String
+  time: TimeSpan
+  leadId: Int!
+  userId: Int
+  lead: Lead
+  user: User
+}
+
+type FaceToFace {
+  id: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+  date: DateTime
+  place: String
+  notes: String
+  time: TimeSpan
+  leadId: Int!
+  userId: Int
+  lead: Lead
+  user: User
+}
+
+type Client {
+  id: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+  startDate: DateTime
+  terminationDate: DateTime
+  leadId: Int
+  billingAddress: String
+  billingCity: String
+  billingState: String
+  billingZipCode: String
+  billingCountry: String
+  userId: Int
+  approved: Boolean
+  contactId: Int
+  notes: String
+  lead: Lead
+}
+
+type User {
+  id: Int!
+  name: String
+  username: String
+  password: String
+  rememberToken: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  lastName: String
+  active: Boolean
+  contactNotes: [ContactNote]
+  faceToFaces: [FaceToFace]
+  leads: [Lead]
+  liveDemonstrations: [LiveDemonstration]
+  proposals: [Proposal]
+  prospects: [Prospect]
+  roleUsers: [RoleUser]
+  updates: [Update]
+}
+
+type Referral {
+  id: Int!
+  name: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  leads: [Lead]
+}
+
+type Industry {
+  id: Int!
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  decisionMakerRoles: [DecisionMakerRole]
+  leads: [Lead]
+}
+
+type Company {
+  id: Int!
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  leads: [Lead]
+}
+
+type DecisionMakerRole {
+  id: Int!
+  name: String
+  industryId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  industry: Industry
+}
+
+type Update {
+  id: Int!
+  objectId: Int
+  tableName: String
+  fieldName: String
+  oldField: String
+  newField: String
+  userId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+  user: User
+}
+
+type RoleUser {
+  id: Int!
+  roleId: Int!
+  userId: Int!
+  role: Role
+  user: User
+}
+
+type ProposalUnit {
+  id: Int!
+  latitude: Decimal
+  longitude: Decimal
+  solarPanel: String
+  lease: String
+  type: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  proposalId: Int!
+  proposal: Proposal
+  c1Files: [C1File]
+  c2Files: [C2File]
+  c3Files: [C3File]
+}
+
+type Telephone {
+  id: Int!
+  type: String
+  number: String
+  contactId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  countryCode: String
+  extension: String
+  contact: Contact
+}
+
+type ContactProspect {
+  id: Int!
+  contactId: Int
+  prospectId: Int
+  faceToFace: Boolean
+  liveDemonstration: Boolean
+  site: Boolean
+  typee: String
+  contact: Contact
+  prospect: Prospect
+}
+
+type ContactNote {
+  id: Int!
+  userId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+  notes: String
+  contactId: Int!
+  contact: Contact
+  user: User
+}
+
+type C3File {
+  id: Int!
+  proposalUnitId: Int
+  name: String
+  size: Decimal
+  createdAt: DateTime
+  updatedAt: DateTime
+  proposalUnit: ProposalUnit
+}
+
+type C2File {
+  id: Int!
+  proposalUnitId: Int
+  name: String
+  size: Decimal
+  createdAt: DateTime
+  updatedAt: DateTime
+  proposalUnit: ProposalUnit
+}
+
+type C1File {
+  id: Int!
+  proposalUnitId: Int
+  name: String
+  size: Decimal
+  createdAt: DateTime
+  updatedAt: DateTime
+  proposalUnit: ProposalUnit
+}
+
+type Role {
+  id: Int!
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  description: String
+  roleUsers: [RoleUser]
+}
+
+directive @authorize("The name of the authorization policy that determines access to the annotated resource." policy: String "Roles that are allowed to access the annotated resource." roles: [String!] "Defines when when the resolver shall be executed.By default the resolver is executed after the policy has determined that the current user is allowed to access the field." apply: ApplyPolicy! = BEFORE_RESOLVER) repeatable on SCHEMA | OBJECT | FIELD_DEFINITION

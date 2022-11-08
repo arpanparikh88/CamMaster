@@ -1,0 +1,251 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "CamMasterContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": "Context",
+   "OutputPath": "Models",
+   "ProjectRootNamespace": "CamMaster.Persistence",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[air_cards]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[c1_files]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[c2_files]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[c3_files]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[cam_station_logins_log]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[cam_station_notes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[cameras]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[camview_login_logs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[clients]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[companies]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[contact_notes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[contact_prospect]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[contact_site]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[contacts]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[decision_maker_roles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[departments]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[employees]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[face_to_faces]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[fingerprint_templates]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[gps]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[incidents]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[industries]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[leads]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[live_demonstrations]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[maintenance_solar_panels]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[maintenance_units]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[nvrs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[passwords]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[police_departments]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[preset_ptz]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[proposal_units]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[proposals]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[prospects]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ptz_settings]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[referrals]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[reports]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[role_user]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[roles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[routers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[sim_cards]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[sites]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[solar_panel_files]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[solar_panels]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[station_unit]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[stations]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[supervisor_cameras]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[telephones]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[unit_files]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[unit_locations]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[units]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[updates]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[users]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[voltage_log]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[v2].[Incident]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "C:\\liveguardtech_db1.dacpac",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": true,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": true,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}

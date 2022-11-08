@@ -1,0 +1,7 @@
+﻿query GetUnits{
+ units  {
+   nodes{
+     id
+   }
+ }
+}

@@ -1,0 +1,41 @@
+﻿@page "/"
+@inject ICamMasterClient CamMasterClient
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+
+
+@code
+{
+    class Unit
+    {
+        public int Id { get; set; }
+    }
+
+    List<Unit> Units { get; set; } = new();
+    bool IsLoading = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            IsLoading = true;
+            var result = await CamMasterClient.GetUnits.ExecuteAsync();
+            if (result.IsSuccessResult())
+            {
+                Units = result.Data.Units.Nodes.Select(e => new Unit() {Id = e.Id}).ToList();
+            }
+
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+
+        
+    }
+}
